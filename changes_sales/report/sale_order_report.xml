@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_quotation_number" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-if='doc.user_id.name']" position="after">
+            <div class="col-auto col-3 mw-100 mb-2">
+                <strong>Driver: </strong>
+                <p>
+                    <span t-field="doc.driver"/>
+                </p>
+            </div>
+            <div class="col-auto col-3 mw-100 mb-2">
+                <strong>Previos Balance: </strong>
+                <p>
+                    <span t-field="doc.previos_balance"/>
+                </p>
+            </div>
+            <div class="col-auto col-3 mw-100 mb-2">
+                <strong>Current Balance: </strong>
+                <p>
+                    <span t-field="doc.current_balance"/>
+                </p>
+            </div>
+        </xpath>
+        <tbody class="sale_tbody">
+                    <t t-foreach="lines_to_report" t-as="line">
+                            <t t-if="not line.display_type">
+                                <td name="td_akias" class="text-end">
+                                    <strong>Akias: </strong>
+                                    <span t-field="line.product_id.akias"/>
+                                </td>
+                                <td name="td_akias" class="text-end">
+                                    <strong>Discount Amount: </strong>
+                                    <span t-field="line.discount_amount"/>
+                                </td>
+                            </t>
+                    </t>
+        </tbody>
+    </template>
+</odoo>
